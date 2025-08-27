@@ -43,8 +43,8 @@ public class ProductRepository {
 
     public String saveProduct(Product product) {
         int id = map.isEmpty() ? 1 : Collections.max(map.keySet()) + 1;
+        product.setId(id);
         map.put(id, product);
-
         return "성공";
     }
 }
