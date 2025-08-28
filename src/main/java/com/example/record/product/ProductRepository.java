@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 //@Repository
@@ -44,6 +45,7 @@ public class ProductRepository {
     public String saveProduct(Product product) {
         int id = map.isEmpty() ? 1 : Collections.max(map.keySet()) + 1;
         product.setId(id);
+        product.setCreatedAt(LocalDateTime.now()); // Entity에만 있는 필드
         map.put(id, product);
         return "성공";
     }
