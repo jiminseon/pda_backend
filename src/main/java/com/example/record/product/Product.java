@@ -16,6 +16,13 @@ public class Product {
     private int price;
     private LocalDateTime createdAt;
 
+    public Product(String name, String artist, LocalDate releaseDate, int price) {
+        this.name = name;
+        this.artist = artist;
+        this.releaseDate = releaseDate;
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Product{" +

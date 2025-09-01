@@ -31,22 +31,21 @@ public class ProductRepository {
 //        return map.get(id);
 //    }
 
-    public ResponseEntity<Product> findId(int id) {
-        if (!map.containsKey(id)) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(map.get(id), HttpStatus.OK);
+    public Product findId(int id) {
+        return map.get(id);  // 없으면 null 반환
     }
 
+
     public List<Product> findAll() {
+        System.out.println(map);
         return new ArrayList<>(map.values());
     }
 
-    public String saveProduct(Product product) {
+    public Product saveProduct(Product product) {
         int id = map.isEmpty() ? 1 : Collections.max(map.keySet()) + 1;
         product.setId(id);
         product.setCreatedAt(LocalDateTime.now()); // Entity에만 있는 필드
         map.put(id, product);
-        return "성공";
+        return product;
     }
 }

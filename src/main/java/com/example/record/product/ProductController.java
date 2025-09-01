@@ -1,5 +1,6 @@
 package com.example.record.product;
 
+import com.example.record.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,15 +30,20 @@ public class ProductController {
 
     }
 
-    @GetMapping(value = "/products/{id}")
-    public ResponseEntity<ProductDto> getProduct(@PathVariable int id) {
-        return productService.getProduct(id);
+    @GetMapping("/products/{id}")
+    public ApiResponse<ProductDto> getProduct(@PathVariable int id) {
+        ProductDto product = productService.getProduct(id);
+        if (product == null) {
+            return new ApiResponse<>(false, null, "not found");
+        }
+        return new ApiResponse<>(true, product, null);
     }
 
-    @GetMapping(value = "/products")
-    public List<ProductDto> getProducts() {
-        return productService.getProducts();
-    }
+
+//    @GetMapping(value = "/products")
+//    public List<ProductDto> getProducts() {
+//        return productService.getProducts();
+//    }
 
 //    @PostMapping(value = "/products")
 //    public String registerProducts(@RequestParam("name") String productName) {
@@ -45,7 +51,17 @@ public class ProductController {
 //    }
 
     @PostMapping(value = "/products")
-    public String registerProducts(@RequestBody Product product) {
-        return productService.saveProduct(product);
+    public ApiResponse<List<RecordRegisterDto>> registerProducts(@RequestBody List<RecordRegisterDto> recordRegisterDtos) {
+        return new ApiResponse<>(true, productService.saveProduct(recordRegisterDtos), null);
     }
+
+    @GetMapping(value= "/products")
+    public ApiResponse<RecordResponseDto> getProducts(@RequestParam int sortCode, int page, int offset) {
+        List<ProductDto> records = productService.getProducts(sortCode, page,offset).getRecords();
+        if (records.isEmpty()) {
+            return new ApiResponse<>(false ,null, "not found");
+        }
+        return new ApiResponse<>(true, productService.getProducts(sortCode, page,offset), null);
+    }
+
 }
