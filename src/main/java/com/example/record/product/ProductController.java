@@ -34,9 +34,9 @@ public class ProductController {
     public ApiResponse<ProductDto> getProduct(@PathVariable int id) {
         ProductDto product = productService.getProduct(id);
         if (product == null) {
-            return new ApiResponse<>(false, null, "not found");
+            return ApiResponse.failure("not found");
         }
-        return new ApiResponse<>(true, product, null);
+        return ApiResponse.success(product);
     }
 
 
@@ -52,16 +52,16 @@ public class ProductController {
 
     @PostMapping(value = "/products")
     public ApiResponse<List<RecordRegisterDto>> registerProducts(@RequestBody List<RecordRegisterDto> recordRegisterDtos) {
-        return new ApiResponse<>(true, productService.saveProduct(recordRegisterDtos), null);
+        return ApiResponse.success(productService.saveProduct(recordRegisterDtos));
     }
 
     @GetMapping(value= "/products")
     public ApiResponse<RecordResponseDto> getProducts(@RequestParam int sortCode, int page, int offset) {
         List<ProductDto> records = productService.getProducts(sortCode, page,offset).getRecords();
         if (records.isEmpty()) {
-            return new ApiResponse<>(false ,null, "not found");
+            return ApiResponse.failure("not found");
         }
-        return new ApiResponse<>(true, productService.getProducts(sortCode, page,offset), null);
+        return ApiResponse.success(productService.getProducts(sortCode, page,offset));
     }
 
 }
