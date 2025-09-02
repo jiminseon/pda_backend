@@ -1,4 +1,4 @@
-package com.example.record.product;
+package com.example.record.product.Dto;
 
 import lombok.Getter;
 

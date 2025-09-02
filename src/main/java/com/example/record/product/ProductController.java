@@ -1,8 +1,12 @@
 package com.example.record.product;
 
-import com.example.record.utils.ApiResponse;
+import com.example.record.product.Dto.ProductDto;
+import com.example.record.product.Dto.RecordRegisterDto;
+import com.example.record.product.Dto.RecordResponseDto;
+import com.example.record.product.Exception.NoSuchProductException;
+import com.example.record.product.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,13 +36,22 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public ApiResponse<ProductDto> getProduct(@PathVariable int id) {
-        try {
-            ProductDto product = productService.getProduct(id);
-            return ApiResponse.success(product);
-        } catch (NullPointerException e) {
-            return ApiResponse.failure(e.getMessage());
-        }
+//        try {
+//            ProductDto product = productService.getProduct(id);
+//            return ApiResponse.success(product);
+//        } catch (NoSuchProductException e) {
+//            return ApiResponse.failure(e.getMessage());
+//        }
+        ProductDto product = productService.getProduct(id);
+        return ApiResponse.success(product);
     }
+
+    @ExceptionHandler(NoSuchProductException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public <T> ApiResponse<T> handleNoSuchProductException(NoSuchProductException e) {
+        return ApiResponse.failure(e.getMessage());
+    }
+
 
 
 

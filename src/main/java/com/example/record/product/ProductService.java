@@ -1,11 +1,9 @@
 package com.example.record.product;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import com.example.record.product.Dto.ProductDto;
+import com.example.record.product.Dto.RecordRegisterDto;
+import com.example.record.product.Dto.RecordResponseDto;
+import com.example.record.product.Exception.NoSuchProductException;
 
 import java.util.Comparator;
 import java.util.List;
@@ -21,8 +19,9 @@ public class ProductService {
     public ProductDto getProduct(int id) {
         Product product = productRepository.findId(id);
 
+
         if (product == null) {
-            throw new NullPointerException("개별 상품 조회 실패"); // 예외 발생
+            throw new NoSuchProductException("개별 상품 조회 실패"); // 예외 발생
         }
 
         return new ProductDto(product);
