@@ -37,7 +37,6 @@ public class ProductRepository {
 
 
     public List<Product> findAll() {
-        System.out.println(map);
         return new ArrayList<>(map.values());
     }
 

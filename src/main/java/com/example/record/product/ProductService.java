@@ -20,7 +20,11 @@ public class ProductService {
 
     public ProductDto getProduct(int id) {
         Product product = productRepository.findId(id);
-        if (product == null) return null;
+
+        if (product == null) {
+            throw new NullPointerException("개별 상품 조회 실패"); // 예외 발생
+        }
+
         return new ProductDto(product);
     }
 

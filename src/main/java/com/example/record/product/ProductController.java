@@ -32,12 +32,14 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public ApiResponse<ProductDto> getProduct(@PathVariable int id) {
-        ProductDto product = productService.getProduct(id);
-        if (product == null) {
-            return ApiResponse.failure("not found");
+        try {
+            ProductDto product = productService.getProduct(id);
+            return ApiResponse.success(product);
+        } catch (NullPointerException e) {
+            return ApiResponse.failure(e.getMessage());
         }
-        return ApiResponse.success(product);
     }
+
 
 
 //    @GetMapping(value = "/products")

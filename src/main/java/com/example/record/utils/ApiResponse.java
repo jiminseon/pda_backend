@@ -1,5 +1,8 @@
 package com.example.record.utils;
 
+import lombok.Getter;
+
+@Getter
 public class ApiResponse<T> {
     private final boolean success;
     private final T response;
@@ -18,17 +21,4 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> failure(String errorMessage) {
         return new ApiResponse<>(false, null, errorMessage);
     }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public T getResponse() {
-        return response;
-    }
-
 }
