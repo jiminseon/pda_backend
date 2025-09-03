@@ -46,13 +46,6 @@ public class ProductController {
         return ApiResponse.success(product);
     }
 
-    @ExceptionHandler(NoSuchProductException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public <T> ApiResponse<T> handleNoSuchProductException(NoSuchProductException e) {
-        return ApiResponse.failure(e.getMessage());
-    }
-
-
 
 
 //    @GetMapping(value = "/products")

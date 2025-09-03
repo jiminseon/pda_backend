@@ -22,10 +22,15 @@ public class MemberRepository {
         return member;
     }
 
-    public Member findByUsernameAndPassword(MemberLoginReqDto member) {
+    public Member findByIdAndPassword(MemberLoginReqDto member) {
         return map.values().stream()
                 .filter(m -> m.getId().equals(member.getId()) && m.getPw().equals(member.getPw()))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public boolean isExistMember(String inputId) {
+        return map.values().stream()
+                .anyMatch(m -> m.getId().equals(inputId));
     }
 }

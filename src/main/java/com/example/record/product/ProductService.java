@@ -56,6 +56,10 @@ public class ProductService {
                 .toList();
         boolean hasMore = true;
 
+        if (record.isEmpty()) {
+            throw new NoSuchProductException("상품 없음");
+        }
+
         if (sortCode == 1) {
             record = record.stream()
                     .sorted(Comparator.comparing(ProductDto::getReleaseDate))
