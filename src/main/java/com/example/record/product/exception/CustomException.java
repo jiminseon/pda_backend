@@ -1,4 +1,4 @@
-package com.example.record.product.Exception;
+package com.example.record.product.exception;
 
 public class CustomException extends  RuntimeException {
     public CustomException(String message) {

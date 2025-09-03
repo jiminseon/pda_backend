@@ -1,9 +1,9 @@
 package com.example.record.product;
 
-import com.example.record.product.Dto.ProductDto;
-import com.example.record.product.Dto.RecordRegisterDto;
-import com.example.record.product.Dto.RecordResponseDto;
-import com.example.record.product.Exception.NoSuchProductException;
+import com.example.record.product.dto.ProductDto;
+import com.example.record.product.dto.RecordRegisterDto;
+import com.example.record.product.dto.RecordResponseDto;
+import com.example.record.product.exception.NoSuchProductException;
 
 import java.util.Comparator;
 import java.util.List;

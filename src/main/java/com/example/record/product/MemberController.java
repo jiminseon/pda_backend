@@ -1,10 +1,9 @@
 package com.example.record.product;
 
-import com.example.record.product.Dto.MemberLoginReqDto;
-import com.example.record.product.Dto.MemberLoginResDto;
-import com.example.record.product.Dto.MemberRegisterReqDto;
-import com.example.record.product.Dto.MemberRegisterResDto;
-import com.example.record.product.Exception.DuplicatedMemberException;
+import com.example.record.product.dto.MemberLoginReqDto;
+import com.example.record.product.dto.MemberLoginResDto;
+import com.example.record.product.dto.MemberRegisterReqDto;
+import com.example.record.product.dto.MemberRegisterResDto;
 import com.example.record.product.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.example.record.product;
 
-import com.example.record.product.Dto.MemberLoginReqDto;
+import com.example.record.product.dto.MemberLoginReqDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;

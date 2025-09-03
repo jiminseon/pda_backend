@@ -1,7 +1,4 @@
-package com.example.record.product.Exception;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+package com.example.record.product.exception;
 
 
 public class NoSuchProductException extends CustomException {

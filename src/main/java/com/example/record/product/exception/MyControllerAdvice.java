@@ -1,4 +1,4 @@
-package com.example.record.product.Exception;
+package com.example.record.product.exception;
 
 import com.example.record.product.utils.ApiResponse;
 import org.springframework.http.HttpStatus;
